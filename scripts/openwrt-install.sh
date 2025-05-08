@@ -21,10 +21,10 @@ esac
 # Create install directory
 mkdir -p /opt/godnsproxy
 
-# Download latest binary
-echo "Downloading latest version..."
-curl -kfsSL "https://github.com/chareice/godnsproxy/releases/latest/download/godnsproxy-openwrt-$ARCH" \
-    -o /opt/godnsproxy/godnsproxy
+# Download and extract latest binary
+echo "Downloading and extracting latest version..."
+curl -kfsSL "https://github.com/chareice/godnsproxy/releases/latest/download/godnsproxy_$(curl -kfsSL https://api.github.com/repos/chareice/godnsproxy/releases/latest | grep tag_name | cut -d'"' -f4)_linux_$ARCH.tar.gz" \
+    | tar -xz -C /opt/godnsproxy
 chmod +x /opt/godnsproxy/godnsproxy
 
 # Install init script
