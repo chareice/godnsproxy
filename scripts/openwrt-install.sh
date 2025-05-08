@@ -4,10 +4,6 @@ set -e
 
 echo "Installing DNS Proxy for OpenWRT..."
 
-# Install dependencies
-opkg update
-opkg install coreutils-nohup curl
-
 # Detect architecture
 ARCH=$(uname -m)
 case "$ARCH" in
