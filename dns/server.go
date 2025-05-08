@@ -61,7 +61,9 @@ func (s *Server) Run() error {
 			return fmt.Errorf("error reading from UDP: %w", err)
 		}
 
-		go s.handleRequest(buf[:n], addr)
+		data := make([]byte, n)
+		copy(data, buf[:n])
+		go s.handleRequest(data, addr)
 	}
 }
 
