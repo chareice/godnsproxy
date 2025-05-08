@@ -47,6 +47,42 @@ sh -c "$(curl -kfsSL https://raw.githubusercontent.com/chareice/godnsproxy/main/
 /etc/init.d/godnsproxy [start|stop|restart|status]
 ```
 
+### 日志查看
+
+#### 命令行查看
+
+```bash
+# 查看最近日志
+logread -e godnsproxy
+
+# 查看完整日志
+logread | grep godnsproxy
+
+# 实时监控日志
+logread -f | grep godnsproxy
+```
+
+#### 调整日志级别
+
+编辑配置文件 `/etc/config/godnsproxy`，修改 `log_level` 选项：
+
+- `info` (默认)
+- `debug` (详细调试信息)
+- `warn` (仅警告和错误)
+
+修改后重启服务生效：
+
+```bash
+/etc/init.d/godnsproxy restart
+```
+
+#### 网页界面查看
+
+如果安装了 LuCI 界面：
+
+1. 进入 系统 → 系统日志
+2. 筛选 `godnsproxy` 相关条目
+
 ## 开发
 
 ### 构建二进制
